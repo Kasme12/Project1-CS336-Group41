@@ -1,10 +1,6 @@
 CREATE DATABASE IF NOT EXISTS travel_reservation;
 USE travel_reservation;
 
--- ============================================================
--- AIRLINE / AIRPORT / AIRCRAFT
--- ============================================================
-
 CREATE TABLE Airline(
     AirlineID VARCHAR(2) PRIMARY KEY,
     name VARCHAR(100) NOT NULL
@@ -24,10 +20,6 @@ CREATE TABLE Aircraft(
     AirlineID VARCHAR(2),
     FOREIGN KEY (AirlineID) REFERENCES Airline(AirlineID)
 );
-
--- ============================================================
--- FLIGHT + FLIGHT INSTANCE
--- ============================================================
 
 CREATE TABLE Flight(
     AirlineID VARCHAR(2),
@@ -60,9 +52,6 @@ CREATE TABLE Flight_Instance(
         REFERENCES Flight(AirlineID, flight_number)
 );
 
--- ============================================================
--- CUSTOMER / EMPLOYEE / ROLES
--- ============================================================
 
 CREATE TABLE Customer(
     customerID INT AUTO_INCREMENT PRIMARY KEY,
@@ -86,9 +75,6 @@ CREATE TABLE Customer_Representative(
     FOREIGN KEY (employeeID) REFERENCES Employee(employeeID)
 );
 
--- ============================================================
--- RESERVATIONS + TICKETS
--- ============================================================
 
 CREATE TABLE Reservation(
     reservationID INT AUTO_INCREMENT PRIMARY KEY,
@@ -114,10 +100,6 @@ CREATE TABLE Ticket(
     FOREIGN KEY (reservationID) REFERENCES Reservation(reservationID),
     FOREIGN KEY (customerID) REFERENCES Customer(customerID)
 );
-
--- ============================================================
--- RELATIONSHIP TABLES
--- ============================================================
 
 CREATE TABLE manages(
     employeeID INT,
