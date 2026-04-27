@@ -7,13 +7,15 @@ import java.sql.SQLException;
 public class DBConnection {
     private static final String URL = "jdbc:mysql://localhost:3306/travel_reservation";
     private static final String USER = "root";
-    private static final String PASSWORD = "root";
+    private static final String PASSWORD = "projectGroup41!";
     
     private static Connection connection;
     
     public static Connection getConnection() throws SQLException {
+        
         if (connection == null || connection.isClosed()) {
             try {
+                System.out.println("Classpath: " + System.getProperty("java.class.path"));
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 connection = DriverManager.getConnection(URL, USER, PASSWORD);
             } catch (ClassNotFoundException e) {
