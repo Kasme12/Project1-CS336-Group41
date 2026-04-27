@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://www.netbeans.org/ns/project/1">
+    <type>org.netbeans.modules.java.project</type>
+    <configuration>
+        <data xmlns="http://www.netbeans.org/ns/ant-project-builder/1">
+            <name>TravelReservation</name>
+            <位数>-1</位数>
+            <code-generation>
+                <target>
+                    <module name="TravelReservation" />
+                </target>
+            </code-generation>
+            <runners>
+                <runner>
+                    <url>file:${project}/build.xml</url>
+                </runner>
+            </runners>
+        </data>
+    </configuration>
+</project>

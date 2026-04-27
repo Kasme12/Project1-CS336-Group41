@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="TravelReservation" default="build" basedir=".">
+    <description>Travel Reservation System Build File</description>
+    
+    <!-- Set properties -->
+    <property name="src.dir" location="src"/>
+    <property name="build.dir" location="bin"/>
+    <property name="dist.dir" location="dist"/>
+    <property name="lib.dir" location="lib"/>
+    
+    <!-- Clean target -->
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+        <delete dir="${dist.dir}"/>
+    </target>
+    
+    <!-- Init target -->
+    <target name="init">
+        <tstamp/>
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${dist.dir}"/>
+    </target>
+    
+    <!-- Compile target -->
+    <target name="compile" depends="init" description="Compile the source">
+        <javac srcdir="${src.dir}" destdir="${build.dir}" includeantruntime="false">
+            <include name="**/*.java"/>
+            <classpath>
+                <fileset dir="${lib.dir}">
+                    <include name="**/*.jar"/>
+                </fileset>
+            </classpath>
+        </javac>
+    </target>
+    
+    <!-- Build JAR target -->
+    <target name="build" depends="compile" description="Build the application">
+        <jar jarfile="${dist.dir}/project.jar" basedir="${build.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="ui.LoginFrame"/>
+                <attribute name="Class-Path" value="lib/mysql-connector-java-8.0.28.jar"/>
+            </manifest>
+        </jar>
+    </target>
+    
+    <!-- Run target -->
+    <target name="run" depends="build" description="Run the application">
+        <java classname="ui.LoginFrame" fork="true">
+            <classpath>
+                <pathelement location="${build.dir}"/>
+                <fileset dir="${lib.dir}">
+                    <include name="**/*.jar"/>
+                </fileset>
+            </classpath>
+        </java>
+    </target>
+</project>
