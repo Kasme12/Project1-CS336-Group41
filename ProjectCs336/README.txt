@@ -1,3 +1,5 @@
+Project Group 41: Ege Canli (eec74), Travis Feldman (tjf149), Samuel Sabala Polanco (ss2867), Esmeralda Bencosme (eb1024)
+
 ================================================================================
                     TRAVEL RESERVATION SYSTEM - README
 ================================================================================
