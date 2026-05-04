@@ -1,5 +1,7 @@
 package ui;
 
+import java.util.List;
+import java.util.Date;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -360,7 +362,7 @@ public class RepresentativeFrame extends JFrame {
         }
         
         try {
-            Date departureDate = Date.valueOf(departureDateStr);
+            java.sql.Date departureDate = java.sql.Date.valueOf(departureDateStr);
             
             FlightDAO flightDAO = new FlightDAO();
             List<Flight> flights = flightDAO.searchFlights(fromAirport, toAirport, departureDate, false);
