@@ -56,6 +56,8 @@ public class RepresentativeFrame extends JFrame {
         
         // View All Reservations Tab
         tabbedPane.addTab("All Reservations", createAllReservationsPanel());
+
+        tabbedPane.addTab("Q&A", new RepQAPanel().createPanel());
         
         add(tabbedPane);
         

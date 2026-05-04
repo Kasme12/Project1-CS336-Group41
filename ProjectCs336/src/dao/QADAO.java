@@ -54,4 +54,56 @@ public class QADAO {
 
     return list;
 }
+
+public List<QA> searchQA(String keyword) throws Exception {
+    List<QA> list = new ArrayList<>();
+
+    String sql = "SELECT q.qa_id, q.question, q.answer, c.name " +
+                 "FROM QA q " +
+                 "JOIN Customer c ON q.customer_id = c.customerID " +
+                 "WHERE q.question LIKE ? OR q.answer LIKE ? " +
+                 "ORDER BY q.created_at DESC";
+
+    Connection conn = DBConnection.getConnection();
+    PreparedStatement pstmt = conn.prepareStatement(sql);
+
+    String search = "%" + keyword + "%";
+    pstmt.setString(1, search);
+    pstmt.setString(2, search);
+
+    ResultSet rs = pstmt.executeQuery();
+
+    while (rs.next()) {
+        QA qa = new QA();
+
+        qa.setId(rs.getInt("qa_id"));
+        qa.setCustomerName(rs.getString("name"));
+        qa.setQuestion(rs.getString("question"));
+        qa.setAnswer(rs.getString("answer"));
+
+        list.add(qa);
+    }
+
+    rs.close();
+    pstmt.close();
+    conn.close();
+
+    return list;
+}
+
+public void answerQuestion(int qaID, String answer) throws Exception {
+    String sql = "UPDATE QA SET answer = ? WHERE qa_id = ?";
+
+    Connection conn = DBConnection.getConnection();
+    PreparedStatement pstmt = conn.prepareStatement(sql);
+
+    pstmt.setString(1, answer);
+    pstmt.setInt(2, qaID);
+
+    pstmt.executeUpdate();
+
+    pstmt.close();
+    conn.close();
+}
+
 }

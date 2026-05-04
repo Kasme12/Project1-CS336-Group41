@@ -8,33 +8,35 @@ import java.util.List;
 public class EmployeeDAO {
     
     public Employee authenticate(String name, String password, String role) throws SQLException {
-        String sql = "SELECT e.* FROM Employee e ";
-        
-        if (role.equals("ADMIN")) {
-            sql += "JOIN Admin a ON e.employeeID = a.employeeID ";
-        } else if (role.equals("CUSTOMER_REPRESENTATIVE")) {
-            sql += "JOIN Customer_Representative cr ON e.employeeID = cr.employeeID ";
-        }
-        
-        sql += "WHERE e.name = ? AND e.employeeID = ?";
-        
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            
-            pstmt.setString(1, name);
-            pstmt.setInt(2, Integer.parseInt(password));
-            
-            ResultSet rs = pstmt.executeQuery();
-            if (rs.next()) {
-                Employee employee = new Employee();
-                employee.setEmployeeID(rs.getInt("employeeID"));
-                employee.setName(rs.getString("name"));
-                employee.setRole(role);
-                return employee;
-            }
-        }
-        return null;
+    String sql = "SELECT e.* FROM Employee e ";
+
+    if (role.equals("ADMIN")) {
+        sql += "JOIN Admin a ON e.employeeID = a.employeeID ";
+    } else if (role.equals("CUSTOMER_REPRESENTATIVE")) {
+        sql += "JOIN Customer_Representative cr ON e.employeeID = cr.employeeID ";
     }
+
+    sql += "WHERE e.name = ? AND e.password = ?";
+
+    try (Connection conn = DBConnection.getConnection();
+         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+        pstmt.setString(1, name);
+        pstmt.setString(2, password);
+
+        ResultSet rs = pstmt.executeQuery();
+
+        if (rs.next()) {
+            Employee employee = new Employee();
+            employee.setEmployeeID(rs.getInt("employeeID"));
+            employee.setName(rs.getString("name"));
+            employee.setRole(role);
+            return employee;
+        }
+    }
+
+    return null;
+}
     
     public List<Employee> getAllEmployees() throws SQLException {
         List<Employee> employees = new ArrayList<>();

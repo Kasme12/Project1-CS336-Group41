@@ -2,7 +2,7 @@ CREATE DATABASE  IF NOT EXISTS `travel_reservation` /*!40100 DEFAULT CHARACTER S
 USE `travel_reservation`;
 -- MySQL dump 10.13  Distrib 8.0.46, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: travel_reservation
+-- Host: localhost    Database: travel_reservation
 -- ------------------------------------------------------
 -- Server version	8.0.21
 
@@ -164,6 +164,7 @@ CREATE TABLE `customer_representative` (
 
 LOCK TABLES `customer_representative` WRITE;
 /*!40000 ALTER TABLE `customer_representative` DISABLE KEYS */;
+INSERT INTO `customer_representative` VALUES (1);
 /*!40000 ALTER TABLE `customer_representative` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -177,8 +178,9 @@ DROP TABLE IF EXISTS `employee`;
 CREATE TABLE `employee` (
   `employeeID` int NOT NULL AUTO_INCREMENT,
   `name` varchar(100) DEFAULT NULL,
+  `password` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`employeeID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -187,6 +189,7 @@ CREATE TABLE `employee` (
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
+INSERT INTO `employee` VALUES (1,'Sam','123');
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -245,7 +248,7 @@ CREATE TABLE `flight_instance` (
   PRIMARY KEY (`flight_instance_id`),
   KEY `AirlineID` (`AirlineID`,`flight_number`),
   CONSTRAINT `flight_instance_ibfk_1` FOREIGN KEY (`AirlineID`, `flight_number`) REFERENCES `flight` (`AirlineID`, `flight_number`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -254,6 +257,7 @@ CREATE TABLE `flight_instance` (
 
 LOCK TABLES `flight_instance` WRITE;
 /*!40000 ALTER TABLE `flight_instance` DISABLE KEYS */;
+INSERT INTO `flight_instance` VALUES (1,'AA','100','2026-05-10',NULL,NULL),(2,'AA','101','2026-05-10',NULL,NULL),(3,'DL','300','2026-05-10',NULL,NULL),(4,'DL','301','2026-05-10',NULL,NULL),(5,'UA','200','2026-05-10',NULL,NULL),(6,'UA','201','2026-05-10',NULL,NULL);
 /*!40000 ALTER TABLE `flight_instance` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -281,6 +285,7 @@ CREATE TABLE `includes` (
 
 LOCK TABLES `includes` WRITE;
 /*!40000 ALTER TABLE `includes` DISABLE KEYS */;
+INSERT INTO `includes` VALUES ('TK12343DBC',1,1),('TK91BD8D58',1,1),('TKCB0BC05E',1,1),('TKE8C2AAF2',1,1);
 /*!40000 ALTER TABLE `includes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -352,7 +357,7 @@ CREATE TABLE `qa` (
   PRIMARY KEY (`qa_id`),
   KEY `customer_id` (`customer_id`),
   CONSTRAINT `qa_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customerID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -361,7 +366,7 @@ CREATE TABLE `qa` (
 
 LOCK TABLES `qa` WRITE;
 /*!40000 ALTER TABLE `qa` DISABLE KEYS */;
-INSERT INTO `qa` VALUES (1,1,'hello?',NULL,'2026-05-04 14:57:35');
+INSERT INTO `qa` VALUES (1,1,'hello?','world','2026-05-04 14:57:35'),(2,1,'abc?','123!','2026-05-04 19:36:54'),(3,1,'hello, how are you? I am asking about the great project we are making','This project is not that!','2026-05-04 19:37:23');
 /*!40000 ALTER TABLE `qa` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -380,7 +385,7 @@ CREATE TABLE `reservation` (
   PRIMARY KEY (`reservationID`),
   KEY `customerID` (`customerID`),
   CONSTRAINT `reservation_ibfk_1` FOREIGN KEY (`customerID`) REFERENCES `customer` (`customerID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -389,6 +394,7 @@ CREATE TABLE `reservation` (
 
 LOCK TABLES `reservation` WRITE;
 /*!40000 ALTER TABLE `reservation` DISABLE KEYS */;
+INSERT INTO `reservation` VALUES (1,1,'2026-05-04 16:15:45','CONFIRMED'),(2,1,'2026-05-04 16:26:42','CONFIRMED'),(3,1,'2026-05-04 16:30:30','CONFIRMED'),(4,1,'2026-05-04 16:30:35','CONFIRMED'),(5,1,'2026-05-04 16:30:51','CONFIRMED');
 /*!40000 ALTER TABLE `reservation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -423,6 +429,7 @@ CREATE TABLE `ticket` (
 
 LOCK TABLES `ticket` WRITE;
 /*!40000 ALTER TABLE `ticket` DISABLE KEYS */;
+INSERT INTO `ticket` VALUES ('TK12343DBC',3,1,200.00,20.00,'2026-05-04 16:30:30','ECONOMY','D7','None'),('TK91BD8D58',4,1,200.00,20.00,'2026-05-04 16:30:35','ECONOMY','B20','None'),('TKCB0BC05E',5,1,1000.00,100.00,'2026-05-04 16:30:51','FIRST','F7','None'),('TKE8C2AAF2',2,1,200.00,20.00,'2026-05-04 16:26:42','ECONOMY','F27','None');
 /*!40000 ALTER TABLE `ticket` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -450,6 +457,7 @@ CREATE TABLE `waits_for` (
 
 LOCK TABLES `waits_for` WRITE;
 /*!40000 ALTER TABLE `waits_for` DISABLE KEYS */;
+INSERT INTO `waits_for` VALUES (1,1,'2026-05-04 16:26:35');
 /*!40000 ALTER TABLE `waits_for` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -462,4 +470,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-05-04 11:00:49
+-- Dump completed on 2026-05-04 16:40:51

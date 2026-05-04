@@ -25,11 +25,13 @@ public class QAPanel {
         JTextField searchField = new JTextField(20);
         JButton searchButton = new JButton("Search");
         JButton askButton = new JButton("Ask Question");
+        JButton detailsButton = new JButton("View Details");
 
         topPanel.add(new JLabel("Search:"));
         topPanel.add(searchField);
         topPanel.add(searchButton);
         topPanel.add(askButton);
+        topPanel.add(detailsButton);
 
         panel.add(topPanel, BorderLayout.NORTH);
 
@@ -49,6 +51,21 @@ public class QAPanel {
         panel.add(scrollPane, BorderLayout.CENTER);
 
         loadTableData(model);
+
+        searchButton.addActionListener(e -> {
+    performSearch(model, searchField.getText());
+});
+
+detailsButton.addActionListener(e -> {
+    int selectedRow = table.getSelectedRow();
+    if (selectedRow >= 0) {
+        String question = (String) model.getValueAt(selectedRow, 1);
+        String answer = (String) model.getValueAt(selectedRow, 2);
+        JOptionPane.showMessageDialog(panel, "Question: " + question + "\nAnswer: " + answer);
+    } else {
+        JOptionPane.showMessageDialog(panel, "Please select a question to view details.");
+    }
+});
 
         askButton.addActionListener(e -> {
             String question = JOptionPane.showInputDialog(panel, "Enter your question:");
@@ -89,4 +106,29 @@ public class QAPanel {
             e.printStackTrace();
         }
     }
+    private void performSearch(DefaultTableModel model, String keyword) {
+    try {
+        QADAO dao = new QADAO();
+
+        // if empty → show all
+        if (keyword == null || keyword.trim().isEmpty()) {
+            model.setRowCount(0);
+            loadTableData(model);
+        } else {
+            model.setRowCount(0);
+            List<QA> list = dao.searchQA(keyword);
+
+            for (QA qa : list) {
+                model.addRow(new Object[]{
+                    qa.getCustomerName(),
+                    qa.getQuestion(),
+                    qa.getAnswer() == null ? "Pending..." : qa.getAnswer()
+                });
+            }
+        }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
 }
