@@ -63,6 +63,11 @@ public class CustomerFrame extends JFrame {
         tabbedPane.addTab("My Waitlist", createWaitlistPanel());
         
         add(tabbedPane);
+
+        QAPanel qaPanel = new QAPanel(currentCustomer);
+        tabbedPane.addTab("Q&A", qaPanel.createQAPanel());
+        
+        add(tabbedPane);
         
         // Menu bar
         JMenuBar menuBar = new JMenuBar();
