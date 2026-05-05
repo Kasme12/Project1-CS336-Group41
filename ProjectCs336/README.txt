@@ -1,5 +1,11 @@
 Project Group 41: Ege Canli (eec74), Travis Feldman (tjf149), Samuel Sabala Polanco (ss2867), Esmeralda Bencosme (eb1024)
 
+TEAM MEMBERS:
+- Ege Canli (eec74)
+- Travis Feldman (tjf149)
+- Samuel Sabala Polanco (ss2867)
+- Esmeralda Bencosme (eb1024)
+
 ================================================================================
                     TRAVEL RESERVATION SYSTEM - README
 ================================================================================
@@ -7,8 +13,20 @@ Project Group 41: Ege Canli (eec74), Travis Feldman (tjf149), Samuel Sabala Pola
 PROJECT OVERVIEW
 ----------------
 This is a complete Java Swing-based Travel Reservation System that connects to
-a MySQL database. It supports three user types: Customers, Customer 
+a MySQL database. It supports three user types: Customers, Customer
 Representatives, and Administrators.
+
+The application supports flight search, one-way and round-trip booking,
+flexible dates, reservations, cancellations, waiting list management,
+customer questions, customer service bookings, flight and data management,
+and administrator reporting.
+
+SYSTEM REQUIREMENTS
+-------------------
+- Java JDK installed
+- MySQL Server installed (MySQL Community Edition)
+- MySQL Workbench installed
+- MySQL JDBC driver (mysql-connector-java.jar) available on the classpath
 
 ================================================================================
 CREDENTIALS
@@ -56,9 +74,9 @@ Password/Phone: 555-0005
 DATABASE SETUP
 ================================================================================
 
-1. Install MySQL Server (if not already installed)
-2. Open MySQL Workbench
-3. Run the database.sql file to create the database and tables
+1. Install MySQL Server from MySQL Community Edition (if not already installed)
+2. Install and open MySQL Workbench
+3. Run the database.sql file in MySQL Workbench to create the database and tables
 4. The database name is: travel_reservation
 
 DATABASE CONNECTION:
@@ -179,10 +197,11 @@ README.txt           - This file
 IMPORTANT NOTES
 ================================================================================
 
-1. The MySQL JDBC driver (mysql-connector-java.jar) must be in the classpath
-2. Make sure the MySQL server is running before launching the application
-3. The database must be created using the provided SQL script before first use
-4. Date format for search: YYYY-MM-DD (e.g., 2026-05-01)
+1. MySQL Server must be installed and running before launching the application
+2. Install MySQL Community Edition and MySQL Workbench for setup and management
+3. The MySQL JDBC driver (mysql-connector-java.jar) must be in the classpath
+4. The database must be created using the provided SQL script before first use
+5. Date format for search: YYYY-MM-DD (e.g., 2026-05-01)
 
 ================================================================================
 TROUBLESHOOTING
