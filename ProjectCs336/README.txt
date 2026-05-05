@@ -1,5 +1,4 @@
-Project Group 41: Ege Canli (eec74), Travis Feldman (tjf149), Samuel Sabala Polanco (ss2867), Esmeralda Bencosme (eb1024)
-
+Project Group 41:
 TEAM MEMBERS:
 - Ege Canli (eec74)
 - Travis Feldman (tjf149)
@@ -18,8 +17,8 @@ Representatives, and Administrators.
 
 The application supports flight search, one-way and round-trip booking,
 flexible dates, reservations, cancellations, waiting list management,
-customer questions, customer service bookings, flight and data management,
-and administrator reporting.
+customer Q&A via the Q&A tab, customer self-registration, customer service
+bookings, flight and data management, and administrator reporting.
 
 SYSTEM REQUIREMENTS
 -------------------
@@ -86,7 +85,7 @@ The application connects to MySQL with these default settings:
 - Port: 3306
 - Database: travel_reservation
 - Username: root
-- Password: root
+- Password: root // this depend of everyone
 
 To change these settings, edit the DBConnection.java file in the dao package.
 
@@ -96,6 +95,7 @@ FEATURES IMPLEMENTED
 
 CUSTOMER FUNCTIONALITY:
 -----------------------
+[X] Register as a new customer
 [X] Search for flights between two airports
 [X] One-way on a specific date
 [X] Round-trip on specific dates
@@ -109,7 +109,7 @@ CUSTOMER FUNCTIONALITY:
 [X] View all upcoming flights with details
 [X] Cancel flight reservations (if business or first class)
 [X] Send alert to customers in waiting list (system notifies)
-[X] Post questions to customer representative
+[X] Ask questions and view answers in the Q&A tab
 
 ADMIN FUNCTIONALITY:
 --------------------
@@ -127,7 +127,7 @@ CUSTOMER REPRESENTATIVE FUNCTIONALITY:
 [X] Add, Edit, Delete information for aircrafts, airports, and flights
 [X] Retrieve a list of all passengers on waiting list of a particular flight
 [X] Produce a list of all flights for a given airport (departing and arriving)
-[X] Reply to user's questions
+[X] View and manage customer reservations
 
 ================================================================================
 HOW TO RUN THE APPLICATION
@@ -157,41 +157,51 @@ OPTION 3 - Using VS Code:
 PROJECT STRUCTURE
 ================================================================================
 
-src/
-├── model/
-│   ├── Airline.java
-│   ├── Airport.java
-│   ├── Aircraft.java
-│   ├── Flight.java
-│   ├── FlightInstance.java
-│   ├── Customer.java
-│   ├── Employee.java
-│   ├── Reservation.java
-│   ├── Ticket.java
-│   └── WaitlistEntry.java
-├── dao/
-│   ├── DBConnection.java
-│   ├── AirlineDAO.java
-│   ├── AirportDAO.java
-│   ├── AircraftDAO.java
-│   ├── FlightDAO.java
-│   ├── FlightInstanceDAO.java
-│   ├── CustomerDAO.java
-│   ├── EmployeeDAO.java
-│   ├── ReservationDAO.java
-│   ├── TicketDAO.java
-│   └── WaitlistDAO.java
-├── ui/
-│   ├── LoginFrame.java
-│   ├── RegisterFrame.java
-│   ├── CustomerFrame.java
-│   ├── RepresentativeFrame.java
-│   └── AdminFrame.java
-└── (compiled classes)
-
-database.sql          - MySQL database schema and sample data
-project.jar           - Executable JAR file
-README.txt           - This file
+ProjectCs336/
+- bin/
+- lib/
+- build.bat
+- build.xml
+- database.sql
+- ER Diagram.pdf
+- MANIFEST.MF
+- project.xml
+- ProjectChecklistSp26.pdf
+- README.txt
+- run.bat
+- src/
+  - dao/
+    - DBConnection.java
+    - AirlineDAO.java
+    - AirportDAO.java
+    - AircraftDAO.java
+    - CustomerDAO.java
+    - EmployeeDAO.java
+    - FlightDAO.java
+    - FlightInstanceDAO.java
+    - ReservationDAO.java
+    - TicketDAO.java
+    - WaitlistDAO.java
+  - model/
+    - Airline.java
+    - Airport.java
+    - Aircraft.java
+    - Customer.java
+    - Employee.java
+    - Flight.java
+    - FlightInstance.java
+    - Reservation.java
+    - Ticket.java
+    - WaitlistEntry.java
+    - QA.java
+  - ui/
+    - AdminFrame.java
+    - CustomerFrame.java
+    - LoginFrame.java
+    - QAPanel.java
+    - RegisterFrame.java
+    - RepresentativeFrame.java
+- (compiled classes)
 
 ================================================================================
 IMPORTANT NOTES
